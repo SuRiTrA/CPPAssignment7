@@ -12,45 +12,44 @@ class Rectangle
   public:
   double length;
   double breadth;
-  double area;
-  
+  double ar;
+  double per;
   double perimeter(double len, double bre);    //to return the perimeter of the rectangle 
   double area(double len, double bre);          //to return the area of the rectangle 
 };
 
-double Rectangle::perimeter(int l,int b)
+double Rectangle::perimeter(double l,double b)
 { 
   return l+b;
 }
-double Rectangle::area(int l,int b)
+double Rectangle::area(double l,double b)
 {
   return l*b;
 }
 
 int main()
 {
-   double L1,L2,B2,B1;
+   
    Rectangle RL1, RL2;
    cout<<"IMPLEMENTING CLASS CONCEPTS CPP3.cpp";
    cout<<"\n \nPROGRAM TO FIND AREA AND PERIMETER OF A TRIANGLE AND COMPARE IT WITH ANOTHER";
    cout<<"\n \nEnter the length of FIRST rectangle: ";
-   cin>>L1;
+   cin>>RL1.length;
    cout<<"\n \nEnter the breadth of FIRST rectangle: ";
-   cin>>B1;
+   cin>>RL1.breadth;
    cout<<"\n \nEnter the length of SECOND rectangle: ";
-   cin>>L2;
+   cin>>RL2.length;
    cout<<"\n \nEnter the breadth of SECOND rectangle: ";
-   cin>>B2;
-   double ar1,ar2,per1, per2;
-   ar1=RL1.area(L1,B1);
-   per1=RL1.perimeter(L1,B1);
-   ar2=RL2.area(L2,B2);
-   per2=RL2.perimeter(L2,B2);
-   if(ar1>ar2)
+   cin>>RL2.breadth;
+   RL1.ar=RL1.area(RL1.length,RL1.breadth);
+   RL1.per=RL1.perimeter(RL1.length,RL1.breadth);
+   RL2.ar=RL2.area(RL2.length,RL2.breadth);
+   RL2.per=RL2.perimeter(RL2.length,RL2.breadth);
+   if(RL1.ar>RL2.ar)
    { 
      cout<<"\nArea of Rectangle 1 is greater than Rectangle 2";
    }
-   else if(ar1<ar2)
+   else if(RL1.ar<RL2.ar)
    { 
      cout<<"\nArea of Rectangle 2 is greater than Rectangle 1";
    }
@@ -58,11 +57,11 @@ int main()
    {
      cout<<"\nArea of Rectangle 1 and Rectangle 2 are equal";
    }
-   if(per1>per2)
+   if(RL1.per>RL2.per)
    { 
      cout<<"\nPerimeter of Rectangle 1 is greater than Rectangle 2";
    }
-   else if(per1<per2)
+   else if(RL1.per<RL2.per)
    { 
      cout<<"\nPerimeter of Rectangle 2 is greater than Rectangle 1";
    }
