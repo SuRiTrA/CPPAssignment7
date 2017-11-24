@@ -1,141 +1,144 @@
-#include <iostream.h>
+#include<iostream>
+using namespace std;
 
+class Point {
+	public:
+	Point();
 
-// ********************************************************************
-//  Declaration of class Point
-// ********************************************************************
+	Point (int xval, int yval);
 
-// class Point represents a two-dimensional point
-class Point
-{
-public:
-  // default class constructor (with no arguments):
-  Point(); 
+	void Move (int dx, int dy);
 
-  // class constructor that sets the coordinates x, y to the values xval,
-  // yval:
-  Point(int xval, int yval);
+	int Get_X() const;
+	int Get_Y() const;
 
-  // member function for moving a point by dx, dy:
-  void Move(int dx, int dy);
+	void Set_X(int xval);
+	void Set_Y(int yval);
 
-  // member functions for getting values of x, y:
-  int Get_X() const;
-  int Get_Y() const;
+	void print() const;
 
-  // member functions for setting x, y to xval, yval respectively  
-  void Set_X(int xval);
-  void Set_Y(int yval);
+	private:
+	int X;
+	int Y;
+};
 
-//Lab 7 exercise 4.1. Add declaration of member function Print here:
-
-// private data members x, y represent coordinates of the point:
-private:
-  int X;
-  int Y;
-};  
-
-
-// ********************************************************************
-//  Methods for class Point
-// ********************************************************************
-
-// class constructor sets X, Y to zero when no values are specified:
-Point::Point()
-{
-  X = 0;
-  Y = 0;
+Point::Point() {
+	X = 0;
+	Y = 0;
 }
 
-// class constructor sets X, Y to given values xval, yval:
-Point::Point(int xval, int yval)
-{
-  X = xval;
-  Y = yval;
+Point::Point(int xval, int yval) {
+	X = xval;
+	Y = yval;
 }
 
-// member function Move: increases the x coordinate by dx and the y
-// coordinate by dy.
-void Point::Move(int dx, int dy)
-{
-  X += dx;
-  Y += dy;
+void Point::Move(int dx, int dy) {
+	X += dx;
+	Y += dy;
 }
 
-// Get_X returns the value of the X coordinate
-int Point::Get_X() const
-{
-  return X;
+int Point::Get_X() const {
+	return X;
 }
 
-// Get_Y returns the value of the Y coordinate
-int Point::Get_Y() const
-{
-  return Y;
+int Point::Get_Y() const {
+	return Y;
 }
 
-// Set_X sets the value of X coordinate to xval
-void Point::Set_X(int xval)
-{
-  X = xval;
-} 
-
-// Set_Y sets the value of Y coordinate to yval
-void Point::Set_Y(int yval)
-{
-  Y = yval;
-} 
-    
-
-//Lab 7 exercise 4.1. Add definition of member function print:
-
-
-// ********************************************************************
-//  Declaration of class Rectangle
-// ********************************************************************
-
-//Lab 7 exercise 4.2, 4.3: Add class Rectangle declaration HERE: 
-
-// ********************************************************************
-//  Methods for class Rectangle
-// ********************************************************************
-
-//Lab 7 exercise 4.2, 4.3. Add class Rectangle methods HERE: 
-
-
-
-// ********************************************************************
-//  main() function for testing classes Point and Rectangle
-// ********************************************************************
-
-
-
-// Testing classes Point and Rectangle
-int main()
-{
-// Declaring a point using default class constructor (x = y = 0):
-  Point p1;
-  cout<< "The x value for p1 is " << p1.Get_X() << endl;
-  cout<< "The y value for p1 is " << p1.Get_Y() << endl;
-
-// Declaring a point with coordinates X = 2, Y = 3:
-  Point p2(2, 3);
-  cout<< "The x value for p2 is " << p2.Get_X() << endl;
-  cout<< "The y value for p2 is " << p2.Get_Y() << endl;
-
-// Moving point p2 by (1, -1):
-  p2.Move(1, -1);
-  cout<< "After the move:" << endl;
-  cout<< "The x value for p2 is " << p2.Get_X() << endl;
-  cout<< "The y value for p2 is " << p2.Get_Y() << endl;
-
-//Lab 7 exercise 4.1. Test member function print on points p1, p2:
-
-//Lab 7 Exercises 4.2, 4.3. Testing of the class Rectangle goes here:  
-
-  return 0;
+void Point::Set_X(int xval) {
+	X = xval;
 }
 
-//---------------------- point.cpp ------------------------------------//
+void Point::Set_Y(int yval) {
+	Y = yval;
+}
 
+void Point::print() const {
+	cout << "(" << X << ", " << Y << ")" << endl;
+}
 
+class Rectangle {
+	Point bottomleft, bottomright, topleft, topright;
+
+	int side1();
+	int side2();
+
+	public:
+	Rectangle(Point bottomleft, Point topright);
+	Rectangle();
+
+	Point getBottomLeft();
+	Point getBottomRight();
+	Point getTopLeft();
+	Point getTopRight();
+
+	void print();
+
+	int area();
+};
+
+Rectangle::Rectangle(Point bottomleft, Point topright){
+	int trX = topright.Get_X();
+	int blY = bottomleft.Get_Y();
+	bottomright.Set_X(trX);
+	bottomright.Set_Y(blY);
+
+	int trY = topright.Get_Y();
+	int blX = bottomleft.Get_X();
+	topleft.Set_X(blX);
+	topleft.Set_Y(trY);
+}
+
+Rectangle::Rectangle() {
+	bottomleft.Set_X(0);
+	bottomleft.Set_Y(0);
+
+	bottomright.Set_X(1);
+	bottomright.Set_Y(0);
+
+	topleft.Set_X(0);
+	topleft.Set_Y(1);
+
+	topright.Set_X(1);
+	topright.Set_Y(1);
+}
+
+Point Rectangle::getBottomLeft() {
+	return bottomleft;
+}
+
+Point Rectangle::getBottomRight() {
+	return bottomright;
+}
+
+Point Rectangle::getTopLeft() {
+	return topleft;
+}
+
+Point Rectangle::getTopRight() {
+	return topright;
+}
+
+int Rectangle::side1() {
+	return topright.Get_X() - bottomleft.Get_X();
+}
+
+int Rectangle::side2() {
+	return topright.Get_Y() - bottomleft.Get_Y();
+}
+
+void Rectangle::print() {
+	bottomleft.print();
+	bottomright.print();
+	topleft.print();
+	topright.print();
+}
+
+int Rectangle::area() {
+	return (*this).side1() * (*this).side2();
+}
+
+int main() {
+
+	return 0;
+}
