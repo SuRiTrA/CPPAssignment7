@@ -1,58 +1,55 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-class ZooAnimal  
-   {
-    private:
-      char *name;
-      int cageNumber;
-      int weightDate;
-      int weight;
-    public:
-      void Destroy (); // destroy function
-      char* reptName ();
-      void create(char *str, int a1, int a2, int a3);
-      int daysSinceLastWeighed (int today);
-   };
-   
-   void ZooAnimal::Destroy ()
-   {    
-    delete [] name;
-   }
+class ZooAnimal {
+	private:
+		char* name;
+		int cage_number;
+		int weight_date;
+		int weight;
+	public:
+		void Destroy();
+		void Create(char* n, int cn, int wd, int w);
 
-   // -------- member function to return the animal's name
-   char* ZooAnimal::reptName ()
-   {
-    return name;
-   }
-   void ZooAnimal::Create(char *str,int a1, int a2, int a3)
-      {
-         bozo.name=str;
-         bozo.cagenumber=a1;
-         bozo.wieghtdate=a2;
-         bozo.weight=a3;
-      }
-   // -------- member function to return the number of days since the animal was last weighed
-   
-   int Zooanimal::daysSinceLastWeighed(int today)
-   {
-    int startday, thisday;
-    thisday = today/100*30 + today - today/100*100;
-    startday = weightDate/100*30 + weightDate - weightDate/100*100;
-    if (thisday < startday) 
-        thisday += 360;
-    return (thisday-startday);
-   }
+		char* reptName();
+		int daysSinceLastWeighed(int today);
+};
 
-   void usingZooanimalclass()
-   {
-      int 
-   }
+void ZooAnimal::Destroy() {
+	delete [] name;
+}
 
-   void main ()
-   {
-    ZooAnimal bozo;
-    bozo.Create ("Bozo", 408, 1027, 400);
-    cout << "This animal's name is " << bozo.name << endl;
-    bozo.Destroy ();
-   }
+void ZooAnimal::Create(char* n, int cn, int wd, int w) {
+	name = n;
+	cage_number = cn;
+	weight_date = wd;
+	weight = w;
+}
+
+char* ZooAnimal::reptName() {
+	return name;
+}
+
+int ZooAnimal::daysSinceLastWeighed(int today) {
+	int startday, thisday;
+	thisday = today/100*30 + today - today/100*100;
+	startday = weight_date/100*30 + weight_date - weight_date/100*100;
+
+	if (thisday < startday) {
+		thisday += 360;
+	}
+
+	return (thisday - startday);
+}
+
+int main() {
+	ZooAnimal bozo;
+	char name[50] = "Bozo";
+
+	bozo.Create (name, 408, 1027, 400);
+
+	cout << "This animal's name is " << bozo.reptName() << endl;
+
+	bozo.Destroy();
+	return 0;
+}
